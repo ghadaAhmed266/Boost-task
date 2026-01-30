@@ -51,4 +51,16 @@ ng serve
 http://localhost:4200
 
 🌐 Live Demo
+https://boost-task-rho.vercel.app/data
 
+📝 Notes
+
+The project is under development, and more features will be added.
+
+Uses Angular Signals for reactive UI updates.
+
+Clean UI with Tailwind and PrimeNG themes.
+
+👩‍💻 Author
+
+Ghada Ahmed
