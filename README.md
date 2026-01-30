@@ -12,6 +12,15 @@ This project demonstrates role-based dashboards, component structuring, and mode
 - Authentication and user role management (planned)
 - Clean and maintainable code structure
 
+
+## 🛠️ Technical Requirements & Implementation
+
+- Used **standalone components** to promote modularity and reusability.
+- Implemented  one **custom directive (ViewIf)** to control rendering, adhering to best practices by **avoiding `*ngIf`, `@if`, or inline conditional expressions** in templates.
+- Leveraged **Angular Signals (role)** and `@Input` bindings for **condition in the custom directive ViewIf** and clean UI state management.
+- Properly configured **Angular routing** with route **guards** for secure navigation based on user roles.
+- Effectively handled **loading** and **error** states to enhance user experience during asynchronous operations Using the **ViewIf Custom Directive**.
+
 ## 🧰 Tech Stack
 - Angular
 - Tailwind CSS
@@ -52,14 +61,6 @@ http://localhost:4200
 
 🌐 Live Demo
 https://boost-task-rho.vercel.app/data
-
-📝 Notes
-
-The project is under development, and more features will be added.
-
-Uses Angular Signals for reactive UI updates.
-
-Clean UI with Tailwind and PrimeNG themes.
 
 👩‍💻 Author
 
