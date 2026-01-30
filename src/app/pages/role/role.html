@@ -1,0 +1,4 @@
+ <main class="card flex flex-col items-center gap-4 h-[77vh] justify-center">
+    <h1 class="mb-5 text-3xl">Select Role</h1>
+    <p-autocomplete [ngModel]="_role.role()" (ngModelChange)="onChange($event)" [suggestions]="items||[]" (completeMethod)="search()" size="large" placeholder="Select Role" dropdown />
+ </main>

@@ -1,0 +1,7 @@
+<header class="container p-5 text-2xl text-center font-bold
+     bg-white/80  backdrop-blur-md border-black/70 
+     border-2 rounded-b-2xl shadow-md
+">
+    <h1  *appViewIf="_role.role()===''">Welcome Please Select Your Role To View The Data</h1>
+    <h1  *appViewIf="_role.role()!=''">Welcome Your role is {{_role.role()}}</h1>
+</header>

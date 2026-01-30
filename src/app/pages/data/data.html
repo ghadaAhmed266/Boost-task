@@ -1,0 +1,115 @@
+
+<!--progress spinner for loading-->
+<section *appViewIf="loading()" class="card flex justify-center items-center h-screen">
+    <p-progress-spinner ariaLabel="loading" />
+</section>
+<!--progress spinner for loading-->
+<section *appViewIf="error()" class="flex flex-col justify-center items-center max-h-screen m-4">
+    <h1 class="my-5 sm:text-3xl text-gray-500">Sorry!!!! Data Not Found .....</h1>
+    <img src="404.png" alt="">
+</section>
+
+<!--Admin role view the users data in table-->
+<section *appViewIf="this._role.role() === 'Admin'">
+    <div class="card">
+        <p-table [value]="data().users" 
+        [tableStyle]="{ 'min-width': '60rem' }"
+        [scrollable]="true"
+        scrollDirection="horizontal"
+        scrollHeight="flex">
+            <ng-template #caption>
+                <div class="flex items-center justify-between">
+                    <span class="text-xl font-bold">Users</span>
+                </div>
+            </ng-template>
+            <ng-template #header>
+                <tr>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                </tr>
+            </ng-template>
+            <ng-template #body let-user>
+                <tr>
+                    <td>{{ user.firstName }} {{user.maidenName }} {{user.lastName}}</td>
+                    <td>
+                        <img [src]="user.image" [alt]="user.firstName" class="w-24 rounded" />
+                    </td>
+                    <td>{{ user.age }} </td>
+                    <td>{{ user.gender }} </td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.phone }}</td>
+                </tr>
+            </ng-template>
+            <ng-template #footer>
+                <tr>
+                    <td colspan="6">In total there are {{ data().users ? data().users.length : 0 }} Users.</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</section>
+
+<!--Instructor role view the posts data-->
+<section *appViewIf="this._role.role() === 'Instructor'">
+     <div class="flex flex-col items-center gap-4
+                p-10">
+        @for( post of data().posts;track post.id )
+        {
+            <div class="card rounded-2xl border-b-2 border-l bg-slate-50 border border-gray-200 p-5 shadow-sm max-w-2xl">
+                
+                    <h2 class="text-center p-2 text-2xl">{{post.title}}</h2>
+                    <p>{{post.body}}</p>
+                    <div class="p-3 flex gap-2 items-center w-full">
+                        <button
+                            pButton
+                            type="button"
+                            icon="pi pi-thumbs-up"
+                            class="p-button-text p-button-success"
+                        ></button>
+                        <span>{{ post.reactions.likes ?? 0 }}</span>
+
+                        <button
+                            pButton
+                            type="button"
+                            icon="pi pi-thumbs-down"
+                            class="p-button-text p-button-danger"
+                        ></button>
+                        <span>{{ post.reactions.dislikes ?? 0 }}</span>
+
+                        <div class="flex flex-1 gap-2 items-center justify-end">
+                            <i class="pi pi-eye"></i>
+                            <span>{{ post.views ?? 0 }}</span>
+                        </div>
+                    </div>
+                    
+            </div>
+         }
+    </div>
+</section>
+
+<!--User role view the products data in cards-->
+<section *appViewIf="this._role.role() === 'User'">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4
+                p-10">
+        @for( product of data();track product.id )
+        {
+            <div class="card h-full rounded-2xl border-b-2 border-l bg-slate-50 border border-gray-200 p-5 shadow-sm">
+                <div class="w-full h-50 flex items-center  justify-center mb-2 bg-slate-50 rounded-t-2xl">
+                    <img alt="Card" class="h-full w-fit" [src]="product.image" />
+                </div>
+                <div class="p-2 flex flex-col justify-between flex-1 gap-2">
+                    <h2 #title >{{product.title}}</h2>
+                    <div class="flex justify-between">
+                        <h3 >Price : {{product.price}}$</h3>
+                        <p-rating [(ngModel)]="product.rating.rate">
+                        </p-rating>
+                    </div>
+                </div>
+            </div>
+         }
+    </div>
+</section>
